@@ -18,6 +18,7 @@ TEXT_PRIMARY = "#333333"
 TEXT_SECONDARY = "#777777"
 CARD_BG = "#ffffff"
 PAGE_BG = "#f4f5f6"
+STATIC_PREFIX = "V12/"  # static part of the voucher
 # ----------------
 
 # --- Initialize counter file ---
@@ -38,7 +39,7 @@ with open(COUNTER_FILE, "r+") as f:
 suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
 
 # --- Final voucher code ---
-VOUCHER_CODE = f"{number}{suffix}"
+VOUCHER_CODE = f"{STATIC_PREFIX}{number}{suffix}"
 
 # --- PAGE STYLING ---
 st.markdown(
