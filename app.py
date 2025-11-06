@@ -68,7 +68,7 @@ st.markdown(
     f"""
     <div class="voucher-card">
         <img class="voucher-logo" src="{LOGO_URL}" alt="Logo">
-        <div class="voucher-code">🎟️ Free Welcome drink Voucher code: {VOUCHER_CODE}</div>
+        <div class="voucher-code">🎟️ {VOUCHER_CODE}</div>
         <div class="voucher-buttons">
             <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
             <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
@@ -78,4 +78,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
 
