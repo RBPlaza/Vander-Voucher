@@ -6,7 +6,7 @@ st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
 WEBSITE_URL = "https://www.vanderhotel.com/food‑drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
-VOUCHER_CODE = "Ref:V12"
+VOUCHER_CODE = "V12"
 ACCENT_BLUE = "#0066cc"   # brand‑style blue (adjust if needed)
 BUTTON_HOVER = "#0055a3"
 TEXT_PRIMARY = "#333333"
@@ -85,7 +85,7 @@ st.markdown(
     f"""
     <div class="voucher-card">
       <img class="voucher-logo" src="{LOGO_URL}" alt="Logo">
-      <div class="voucher-text">Free welcome drink with voucher:</div>
+      <div class="voucher-text">Free welcome drink with voucher code:</div>
       <div class="voucher-code">🎟️ {VOUCHER_CODE}</div>
       <div class="voucher‑buttons">
         <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
