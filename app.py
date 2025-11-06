@@ -96,6 +96,22 @@ st.markdown(
         color: {TEXT_SECONDARY};
         margin-top: 18px;
       }}
+      .download-button-container {{
+        display: flex;
+        justify-content: center;
+        margin-top: -10px;  /* pulls the button visually closer to the card */
+        margin-bottom: 20px;
+      }}
+      .download-button-container .stDownloadButton button {{
+        background-color: {BUTTON_COLOR};
+        color: white;
+        border-radius: 12px;
+        padding: 10px 22px;
+        font-size: 0.95rem;
+      }}
+      .download-button-container .stDownloadButton button:hover {{
+        background-color: {BUTTON_HOVER};
+      }}
       @media only screen and (max-width: 480px) {{
         .voucher-card {{
           margin-top: 20px;
@@ -123,10 +139,20 @@ st.markdown(
       <div class="voucher-buttons">
         <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
         <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
-        <a href="{PDF_FILE}" target="_blank">📄 View Menu</a>
       </div>
       <div class="voucher-caption">Please show this voucher on your device</div>
     </div>
     """,
     unsafe_allow_html=True
 )
+
+# --- PDF Download Button ---
+with open(PDF_FILE, "rb") as pdf_file:
+    st.markdown('<div class="download-button-container">', unsafe_allow_html=True)
+    st.download_button(
+        label="📄 View Menu",
+        data=pdf_file,
+        file_name="ChefsPlatesWinter.pdf",
+        mime="application/pdf"
+    )
+    st.markdown('</div>', unsafe_allow_html=True)
