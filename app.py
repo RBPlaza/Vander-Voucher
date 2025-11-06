@@ -1,4 +1,8 @@
 import streamlit as st
+import json
+import os
+import random
+import string
 
 st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 
@@ -6,16 +10,37 @@ st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
 WEBSITE_URL = "https://www.vanderhotel.com/food‑drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
-VOUCHER_CODE = "Ref:V12"
+COUNTER_FILE = "counter.json"
 
-BUTTON_COLOR = "#353230"   # updated button color
-BUTTON_HOVER = "#1e1c1a"   # slightly darker on hover
+BUTTON_COLOR = "#353230"
+BUTTON_HOVER = "#1e1c1a"
 TEXT_PRIMARY = "#333333"
 TEXT_SECONDARY = "#777777"
 CARD_BG = "#ffffff"
 PAGE_BG = "#f4f5f6"
 # ----------------
 
+# --- Initialize counter file ---
+if not os.path.exists(COUNTER_FILE):
+    with open(COUNTER_FILE, "w") as f:
+        json.dump({"number": 100}, f)
+
+# --- Read + increment counter ---
+with open(COUNTER_FILE, "r+") as f:
+    data = json.load(f)
+    number = data["number"]
+    data["number"] += 1
+    f.seek(0)
+    json.dump(data, f)
+    f.truncate()
+
+# --- Generate random 5-character suffix ---
+suffix = ''.join(random.choices(string.ascii_lowercase + string.digits, k=5))
+
+# --- Final voucher code ---
+VOUCHER_CODE = f"{number}{suffix}"
+
+# --- PAGE STYLING ---
 st.markdown(
     f"""
     <style>
@@ -32,7 +57,7 @@ st.markdown(
         text-align: center;
         max-width: 420px;
         width: 90%;
-        margin: 40px auto; /* moved up */
+        margin: 40px auto;
       }}
       .voucher-logo {{
         width: 130px;
@@ -54,7 +79,7 @@ st.markdown(
         background-color: {BUTTON_COLOR};
         color: white;
         text-decoration: none;
-        padding: 12px 26px; /* smaller by ~20% */
+        padding: 12px 26px;
         margin: 8px 4px;
         border-radius: 12px;
         font-weight: 600;
@@ -71,13 +96,13 @@ st.markdown(
       }}
       @media only screen and (max-width: 480px) {{
         .voucher-card {{
-          margin-top: 20px; /* move higher on mobile */
+          margin-top: 20px;
         }}
         .voucher-code {{
           font-size: 1.8rem;
         }}
         .voucher-buttons a {{
-          padding: 10px 20px; /* smaller on mobile */
+          padding: 10px 20px;
           margin: 6px 3px;
         }}
       }}
@@ -86,6 +111,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
+# --- VOUCHER CARD ---
 st.markdown(
     f"""
     <div class="voucher-card">
