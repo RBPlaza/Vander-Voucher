@@ -10,7 +10,6 @@ st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
 WEBSITE_URL = "https://www.vanderhotel.com/food‑drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
-PDF_URL = "/static/ChefsPlatesWinter.pdf"  # Public URL of the PDF file
 COUNTER_FILE = "counter.json"
 
 BUTTON_COLOR = "#353230"
@@ -51,17 +50,15 @@ st.markdown(
         font-family: 'Arial', sans-serif;
         margin: 0; padding: 0;
       }}
-      .voucher-container {{
-        max-width: 420px;
-        margin: 40px auto;
-        padding: 0 10px;
-      }}
       .voucher-card {{
         background-color: {CARD_BG};
-        padding: 35px 25px 20px 25px;
+        padding: 35px 25px;
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         text-align: center;
+        max-width: 420px;
+        width: 90%;
+        margin: 40px auto;
       }}
       .voucher-logo {{
         width: 130px;
@@ -78,23 +75,17 @@ st.markdown(
         color: {TEXT_PRIMARY};
         margin-bottom: 25px;
       }}
-      .voucher-buttons {{
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 12px;
-      }}
       .voucher-buttons a {{
+        display: inline-block;
         background-color: {BUTTON_COLOR};
         color: white;
         text-decoration: none;
         padding: 12px 26px;
+        margin: 8px 4px;
         border-radius: 12px;
         font-weight: 600;
         font-size: 0.95rem;
         transition: background-color 0.3s ease;
-        display: inline-block;
       }}
       .voucher-buttons a:hover {{
         background-color: {BUTTON_HOVER};
@@ -102,24 +93,24 @@ st.markdown(
       .voucher-caption {{
         font-size: 0.85rem;
         color: {TEXT_SECONDARY};
-        margin-top: 8px;
+        margin-top: 18px;
       }}
       @media only screen and (max-width: 480px) {{
+        .voucher-card {{
+          margin-top: 20px;
+        }}
         .voucher-code {{
           font-size: 1.8rem;
         }}
         .voucher-buttons a {{
           padding: 10px 20px;
-          font-size: 0.9rem;
+          margin: 6px 3px;
         }}
       }}
     </style>
     """,
     unsafe_allow_html=True,
 )
-
-# --- VOUCHER + BUTTON CONTAINER ---
-st.markdown('<div class="voucher-container">', unsafe_allow_html=True)
 
 # --- VOUCHER CARD ---
 st.markdown(
@@ -131,10 +122,8 @@ st.markdown(
       <div class="voucher-buttons">
         <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
         <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
-        <a href="{PDF_URL}" target="_blank" download>📄 View Menu</a>
       </div>
       <div class="voucher-caption">Please show this voucher on your device</div>
-    </div>
     </div>
     """,
     unsafe_allow_html=True,
