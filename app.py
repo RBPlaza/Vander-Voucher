@@ -51,15 +51,17 @@ st.markdown(
         font-family: 'Arial', sans-serif;
         margin: 0; padding: 0;
       }}
+      .voucher-container {{
+        max-width: 420px;
+        margin: 40px auto;
+        padding: 0 10px;
+      }}
       .voucher-card {{
         background-color: {CARD_BG};
-        padding: 35px 25px;
+        padding: 35px 25px 20px 25px;
         border-radius: 20px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         text-align: center;
-        max-width: 420px;
-        width: 90%;
-        margin: 40px auto;
       }}
       .voucher-logo {{
         width: 130px;
@@ -76,58 +78,49 @@ st.markdown(
         color: {TEXT_PRIMARY};
         margin-bottom: 25px;
       }}
-      .voucher-buttons a {{
-        display: inline-block;
-        background-color: {BUTTON_COLOR};
-        color: white;
+      .voucher-buttons {{
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }}
+      .voucher-buttons a, .download-button-container .stDownloadButton button {{
+        background-color: {BUTTON_COLOR} !important;
+        color: white !important;
         text-decoration: none;
         padding: 12px 26px;
-        margin: 8px 4px;
         border-radius: 12px;
         font-weight: 600;
         font-size: 0.95rem;
+        border: none;
+        cursor: pointer;
         transition: background-color 0.3s ease;
       }}
-      .voucher-buttons a:hover {{
-        background-color: {BUTTON_HOVER};
+      .voucher-buttons a:hover, .download-button-container .stDownloadButton button:hover {{
+        background-color: {BUTTON_HOVER} !important;
       }}
       .voucher-caption {{
         font-size: 0.85rem;
         color: {TEXT_SECONDARY};
-        margin-top: 18px;
-      }}
-      .download-button-container {{
-        display: flex;
-        justify-content: center;
-        margin-top: -10px;  /* pulls the button visually closer to the card */
-        margin-bottom: 20px;
-      }}
-      .download-button-container .stDownloadButton button {{
-        background-color: {BUTTON_COLOR};
-        color: white;
-        border-radius: 12px;
-        padding: 10px 22px;
-        font-size: 0.95rem;
-      }}
-      .download-button-container .stDownloadButton button:hover {{
-        background-color: {BUTTON_HOVER};
+        margin-top: 8px;
       }}
       @media only screen and (max-width: 480px) {{
-        .voucher-card {{
-          margin-top: 20px;
-        }}
         .voucher-code {{
           font-size: 1.8rem;
         }}
-        .voucher-buttons a {{
+        .voucher-buttons a, .download-button-container .stDownloadButton button {{
           padding: 10px 20px;
-          margin: 6px 3px;
+          font-size: 0.9rem;
         }}
       }}
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+# --- VOUCHER + BUTTON CONTAINER ---
+st.markdown('<div class="voucher-container">', unsafe_allow_html=True)
 
 # --- VOUCHER CARD ---
 st.markdown(
@@ -139,20 +132,29 @@ st.markdown(
       <div class="voucher-buttons">
         <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
         <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
-      </div>
-      <div class="voucher-caption">Please show this voucher on your device</div>
-    </div>
     """,
-    unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
-# --- PDF Download Button ---
+# Close the last div for buttons, but after we add download button, so here just keep the HTML open
+
+# PDF download button inside same flex container
 with open(PDF_FILE, "rb") as pdf_file:
-    st.markdown('<div class="download-button-container">', unsafe_allow_html=True)
+    st.markdown('<div class="download-button-container" style="display:inline-block;">', unsafe_allow_html=True)
     st.download_button(
         label="📄 View Menu",
         data=pdf_file,
         file_name="ChefsPlatesWinter.pdf",
-        mime="application/pdf"
+        mime="application/pdf",
+        key="menu-download"
     )
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)  # closes voucher-buttons and voucher-card divs
+
+# Voucher caption below buttons, inside card
+st.markdown(
+    """
+    <div class="voucher-caption">Please show this voucher on your device</div>
+    </div> <!-- closes voucher-container -->
+    """,
+    unsafe_allow_html=True,
+)
