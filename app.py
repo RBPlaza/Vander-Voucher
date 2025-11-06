@@ -38,4 +38,52 @@ st.markdown(
     }
     .voucher-text {
         font-size: 1.2rem;
-        color: #55555
+        color: #555555;
+        margin-bottom: 10px;
+    }
+    .voucher-code {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 25px;
+    }
+    .voucher-buttons a {
+        display: inline-block;
+        background-color: #0078D7;
+        color: white;
+        text-decoration: none;
+        padding: 14px 28px;
+        margin: 8px 4px;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    .voucher-buttons a:hover {
+        background-color: #005ea3;
+    }
+    .voucher-caption {
+        font-size: 0.85rem;
+        color: #888888;
+        margin-top: 20px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# --- VOUCHER CARD ---
+st.markdown(
+    f"""
+    <div class="voucher-card">
+        <img class="voucher-logo" src="{LOGO_URL}" alt="Logo">
+        <div class="voucher-text">Free welcome drink with voucher:</div>
+        <div class="voucher-code">🎟️ {VOUCHER_CODE}</div>
+        <div class="voucher-buttons">
+            <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
+            <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
+        </div>
+        <div class="voucher-caption">Show this voucher on your device</div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
