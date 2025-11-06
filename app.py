@@ -7,7 +7,6 @@ LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
 WEBSITE_URL = "https://www.vanderhotel.com/food-drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
 VOUCHER_CODE = "Ref:V12"
-# ----------------
 
 # --- PAGE STYLING ---
 st.markdown(
@@ -74,15 +73,15 @@ st.markdown(
 # --- VOUCHER CARD ---
 st.markdown(
     f"""
-    <div class="voucher-card">
-        <img class="voucher-logo" src="{LOGO_URL}" alt="Logo">
-        <div class="voucher-text">Free welcome drink with voucher:</div>
-        <div class="voucher-code">🎟️ {VOUCHER_CODE}</div>
-        <div class="voucher-buttons">
-            <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
-            <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
+    <div class='voucher-card'>
+        <img class='voucher-logo' src='{LOGO_URL}' alt='Logo'>
+        <div class='voucher-text'>Free welcome drink with voucher:</div>
+        <div class='voucher-code'>🎟️ {VOUCHER_CODE}</div>
+        <div class='voucher-buttons'>
+            <a href='{WEBSITE_URL}' target='_blank'>🌐 Visit Website</a>
+            <a href='{LOCATION_URL}' target='_blank'>📍 View Location</a>
         </div>
-        <div class="voucher-caption">Show this voucher on your device</div>
+        <div class='voucher-caption'>Show this voucher on your device</div>
     </div>
     """,
     unsafe_allow_html=True
