@@ -8,9 +8,9 @@ st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 
 # --- SETTINGS ---
 LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
-WEBSITE_URL = "https://www.vanderhotel.com/food-drink"
+WEBSITE_URL = "https://www.vanderhotel.com/food‑drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
-PDF_FILE = "ChefsPlatesWinter.pdf"  # PDF file in repo
+PDF_FILE = "static/ChefsPlatesWinter.pdf"  # PDF file in static folder
 COUNTER_FILE = "counter.json"
 
 BUTTON_COLOR = "#353230"
@@ -130,4 +130,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-
