@@ -10,7 +10,7 @@ st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
 WEBSITE_URL = "https://www.vanderhotel.com/food‑drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
-PDF_FILE = "static/ChefsPlatesWinter.pdf"  # PDF file in static folder
+PDF_URL = "/static/ChefsPlatesWinter.pdf"  # Public URL of the PDF file
 COUNTER_FILE = "counter.json"
 
 BUTTON_COLOR = "#353230"
@@ -85,20 +85,19 @@ st.markdown(
         flex-wrap: wrap;
         margin-bottom: 12px;
       }}
-      .voucher-buttons a, .download-button-container .stDownloadButton button {{
-        background-color: {BUTTON_COLOR} !important;
-        color: white !important;
+      .voucher-buttons a {{
+        background-color: {BUTTON_COLOR};
+        color: white;
         text-decoration: none;
         padding: 12px 26px;
         border-radius: 12px;
         font-weight: 600;
         font-size: 0.95rem;
-        border: none;
-        cursor: pointer;
         transition: background-color 0.3s ease;
+        display: inline-block;
       }}
-      .voucher-buttons a:hover, .download-button-container .stDownloadButton button:hover {{
-        background-color: {BUTTON_HOVER} !important;
+      .voucher-buttons a:hover {{
+        background-color: {BUTTON_HOVER};
       }}
       .voucher-caption {{
         font-size: 0.85rem;
@@ -109,7 +108,7 @@ st.markdown(
         .voucher-code {{
           font-size: 1.8rem;
         }}
-        .voucher-buttons a, .download-button-container .stDownloadButton button {{
+        .voucher-buttons a {{
           padding: 10px 20px;
           font-size: 0.9rem;
         }}
@@ -132,29 +131,11 @@ st.markdown(
       <div class="voucher-buttons">
         <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
         <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
-    """,
-    unsafe_allow_html=True,
-)
-
-# Close the last div for buttons, but after we add download button, so here just keep the HTML open
-
-# PDF download button inside same flex container
-with open(PDF_FILE, "rb") as pdf_file:
-    st.markdown('<div class="download-button-container" style="display:inline-block;">', unsafe_allow_html=True)
-    st.download_button(
-        label="📄 View Menu",
-        data=pdf_file,
-        file_name="ChefsPlatesWinter.pdf",
-        mime="application/pdf",
-        key="menu-download"
-    )
-    st.markdown('</div></div>', unsafe_allow_html=True)  # closes voucher-buttons and voucher-card divs
-
-# Voucher caption below buttons, inside card
-st.markdown(
-    """
-    <div class="voucher-caption">Please show this voucher on your device</div>
-    </div> <!-- closes voucher-container -->
+        <a href="{PDF_URL}" target="_blank" download>📄 View Menu</a>
+      </div>
+      <div class="voucher-caption">Please show this voucher on your device</div>
+    </div>
+    </div>
     """,
     unsafe_allow_html=True,
 )
