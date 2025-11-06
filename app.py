@@ -10,6 +10,7 @@ st.set_page_config(page_title="Voucher", page_icon="🎟️", layout="centered")
 LOGO_URL = "https://kabinet01.net/wp-content/uploads/2020/02/VANDER-logo.png"
 WEBSITE_URL = "https://www.vanderhotel.com/food‑drink"
 LOCATION_URL = "https://maps.app.goo.gl/Hb5fZGGMMBcbaGzDA"
+PDF_FILE = "ChefsPlatesWinter.pdf"  # PDF file in repo
 COUNTER_FILE = "counter.json"
 
 BUTTON_COLOR = "#353230"
@@ -18,7 +19,7 @@ TEXT_PRIMARY = "#333333"
 TEXT_SECONDARY = "#777777"
 CARD_BG = "#ffffff"
 PAGE_BG = "#f4f5f6"
-STATIC_PREFIX = "V12/"  # static part of the voucher
+STATIC_PREFIX = "V12/"  # static part of voucher
 # ----------------
 
 # --- Initialize counter file ---
@@ -122,6 +123,7 @@ st.markdown(
       <div class="voucher-buttons">
         <a href="{WEBSITE_URL}" target="_blank">🌐 Visit Website</a>
         <a href="{LOCATION_URL}" target="_blank">📍 View Location</a>
+        <a href="{PDF_FILE}" target="_blank">📄 View Menu</a>
       </div>
       <div class="voucher-caption">Please show this voucher on your device</div>
     </div>
